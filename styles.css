@@ -48,7 +48,7 @@ html, body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    max-height: 10vw;
+    height: 11vw;
     margin-top: auto;
     margin-bottom: 80px;
     mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
