@@ -98,3 +98,22 @@ html, body {
     height:3em; 
     width: 3em;
 }
+
+#foot {
+    display: flex;
+    font-size: x-small;
+    font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+    color: var(--bg3);
+    flex-direction: row;
+    width: 150px;
+    text-align: center;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+
+.footbtn {
+    color: var(--bg3);
+    margin-top: auto;
+    margin-bottom: auto;
+}
