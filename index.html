@@ -4,26 +4,22 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>meikämasiina</title>
-        <style>
-            html, body {height: 100%; overflow: hidden;}
-            #container {min-height: 100%; display: flex; justify-content: space-between; flex-direction: column; align-items: center;}
-            #controls {padding-bottom: 30dvh; display: flex; width: 300px; justify-content: space-around; flex-direction: row;}
-            #output {height: auto; margin-bottom: 80px; transform-origin: bottom; transform: scale(1); margin-top: auto; font-size: 8.3vw; word-break: break-word; hyphens: auto; font-family: monospace;}
-            #wordButton {height: 6em; width: 6em;}
-            #copyButton {height:3em; width: 3em;}
-            #shareButton {height:3em; width: 3em;}
-        </style>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <div id="container">
-            <h1 id="output">meikämasiina</h1>
+            <div id="spinnerbox">
+                <div class="tiles">
+                    <div class="tile" style="font-size: 8.3vw;">meikämasiina</div>
+                </div>
+            </div>
             <div id="controls">
                 <div>
                     <input type="checkbox" id="radSwitch">
                     <label>radikaali</label>
                 </div>
                 <button id="wordButton">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><!-- Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M12 20q-3.35 0-5.675-2.325T4 12t2.325-5.675T12 4q1.725 0 3.3.712T18 6.75V4h2v7h-7V9h4.2q-.8-1.4-2.187-2.2T12 6Q9.5 6 7.75 7.75T6 12t1.75 4.25T12 18q1.925 0 3.475-1.1T17.65 14h2.1q-.7 2.65-2.85 4.325T12 20"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" viewBox="0 0 24 24"><!-- Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M12 20q-3.35 0-5.675-2.325T4 12t2.325-5.675T12 4q1.725 0 3.3.712T18 6.75V4h2v7h-7V9h4.2q-.8-1.4-2.187-2.2T12 6Q9.5 6 7.75 7.75T6 12t1.75 4.25T12 18q1.925 0 3.475-1.1T17.65 14h2.1q-.7 2.65-2.85 4.325T12 20"/></svg>
                 </button>
                 <button id="copyButton">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><!-- Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M9 18q-.825 0-1.412-.587T7 16V4q0-.825.588-1.412T9 2h9q.825 0 1.413.588T20 4v12q0 .825-.587 1.413T18 18zm0-2h9V4H9zm-4 6q-.825 0-1.412-.587T3 20V6h2v14h11v2zm4-6V4z"/></svg>
@@ -34,20 +30,18 @@
             </div>
         </div>
     </body>
-    <footer>
-        ⓘ
-    </footer>
 </html>
 <script>
     var wordbtn = document.getElementById("wordButton");
     var copybtn = document.getElementById("copyButton");
     var sharebtn = document.getElementById("shareButton");
     var radswitch = document.getElementById("radSwitch");
-    var output = document.getElementById("output")
-    let wordList = []
-    let radWordList = []
+    var spinnerbox = document.getElementById("spinnerbox");
+    let wordList = [];
+    let radWordList = [];
+    let currentWord = "meikämasiina";
 
-    wordbtn.addEventListener("click", getWord);
+    wordbtn.addEventListener("click", spin);
     copybtn.addEventListener("click", copyWord);
     sharebtn.addEventListener("click", shareWord);
 
@@ -59,7 +53,7 @@
         })
         .catch(error => console.error('Error loading words:', error));
 
-    fetch('testwordlist.json')
+    fetch('radwordlist.json')
         .then(response => response.json())
         .then(data => {
             radWordList = data;
@@ -67,16 +61,47 @@
         })
         .catch(error => console.error('Error loading radical words:', error));
 
+    function spin() {
+        let tiles = spinnerbox.querySelector(".tiles");
+        let wheel = getWheel(15);
+
+        let temptiles = document.createElement("div");
+        temptiles.classList.add("tiles");
+
+        for (let i = 0; i < wheel.length; i++) {
+            let tile = document.createElement("div");
+            tile.classList.add("tile");
+            tile.textContent = wheel[i];
+            tile.style.fontSize = getFontSize(wheel[i]);
+            temptiles.appendChild(tile);
+            currentWord = wheel[i];
+            console.log(wheel[i]);
+        }
+        spinnerbox.replaceChild(temptiles, tiles);
+        temptiles.getBoundingClientRect();
+        temptiles.classList.add("spin");
+    }
     function getWord() {
         if (wordList.length > 0) {
             if (radswitch.checked == false){
-                output.innerHTML = "meikä" + wordList[Math.floor(Math.random() * wordList.length)]
+                return "meikä" + wordList[Math.floor(Math.random() * wordList.length)];
             } else {
-                output.innerHTML = "meikä" + radWordList[Math.floor(Math.random() * radWordList.length)]
+                return "meikä" + radWordList[Math.floor(Math.random() * radWordList.length)];
             }
-            output.style.fontSize = 9-((output.innerHTML.length-8)/26)*4.5 + "vw"
-            console.log(output.innerHTML.length > 20);
         }
+    }
+
+    function getWheel(size) {
+        let wheel = []
+        wheel.push(currentWord);
+        for (let i = 0; i < size-1; i++) {
+            wheel.push(getWord());
+        }
+        return wheel;
+    }
+
+    function getFontSize(word) {
+        return 9-((word.length-8)/26)*4.5 + "vw";
     }
 
     function copyWord() {
