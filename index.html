@@ -14,18 +14,14 @@
                 </div>
             </div>
             <div id="controls">
-                <div>
-                    <input type="checkbox" id="radSwitch">
-                    <label>radikaali</label>
-                </div>
-                <button id="wordButton">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="4em" height="4em" viewBox="0 0 24 24"><!-- Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M12 20q-3.35 0-5.675-2.325T4 12t2.325-5.675T12 4q1.725 0 3.3.712T18 6.75V4h2v7h-7V9h4.2q-.8-1.4-2.187-2.2T12 6Q9.5 6 7.75 7.75T6 12t1.75 4.25T12 18q1.925 0 3.475-1.1T17.65 14h2.1q-.7 2.65-2.85 4.325T12 20"/></svg>
-                </button>
-                <button id="copyButton">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><!-- Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M9 18q-.825 0-1.412-.587T7 16V4q0-.825.588-1.412T9 2h9q.825 0 1.413.588T20 4v12q0 .825-.587 1.413T18 18zm0-2h9V4H9zm-4 6q-.825 0-1.412-.587T3 20V6h2v14h11v2zm4-6V4z"/></svg>
-                </button>
-                <button id="shareButton">
+                <button id="shareButton" class="btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><!-- Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M17 22q-1.25 0-2.125-.875T14 19q0-.15.075-.7L7.05 14.2q-.4.375-.925.588T5 15q-1.25 0-2.125-.875T2 12t.875-2.125T5 9q.6 0 1.125.213t.925.587l7.025-4.1q-.05-.175-.062-.337T14 5q0-1.25.875-2.125T17 2t2.125.875T20 5t-.875 2.125T17 8q-.6 0-1.125-.213T14.95 7.2l-7.025 4.1q.05.175.063.338T8 12t-.012.363t-.063.337l7.025 4.1q.4-.375.925-.587T17 16q1.25 0 2.125.875T20 19t-.875 2.125T17 22"/></svg>
+                </button>
+                <button id="wordButton" class="btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="4.5em" height="4.5em" viewBox="0 0 24 24"><!-- Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M12 20q-3.35 0-5.675-2.325T4 12t2.325-5.675T12 4q1.725 0 3.3.712T18 6.75V4h2v7h-7V9h4.2q-.8-1.4-2.187-2.2T12 6Q9.5 6 7.75 7.75T6 12t1.75 4.25T12 18q1.925 0 3.475-1.1T17.65 14h2.1q-.7 2.65-2.85 4.325T12 20"/></svg>
+                </button>
+                <button id="copyButton" class="btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><!-- Icon from Material Symbols by Google - https://github.com/google/material-design-icons/blob/master/LICENSE --><path fill="currentColor" d="M9 18q-.825 0-1.412-.587T7 16V4q0-.825.588-1.412T9 2h9q.825 0 1.413.588T20 4v12q0 .825-.587 1.413T18 18zm0-2h9V4H9zm-4 6q-.825 0-1.412-.587T3 20V6h2v14h11v2zm4-6V4z"/></svg>
                 </button>
             </div>
         </div>
@@ -35,31 +31,21 @@
     var wordbtn = document.getElementById("wordButton");
     var copybtn = document.getElementById("copyButton");
     var sharebtn = document.getElementById("shareButton");
-    var radswitch = document.getElementById("radSwitch");
     var spinnerbox = document.getElementById("spinnerbox");
     let wordList = [];
-    let radWordList = [];
     let currentWord = "meikämasiina";
 
     wordbtn.addEventListener("click", spin);
     copybtn.addEventListener("click", copyWord);
     sharebtn.addEventListener("click", shareWord);
 
-    fetch('wordlist.json')
+    fetch('wordlist_v1.json')
         .then(response => response.json())
         .then(data => {
             wordList = data;
             console.log("Words loaded:", wordList.length);
         })
         .catch(error => console.error('Error loading words:', error));
-
-    fetch('radwordlist.json')
-        .then(response => response.json())
-        .then(data => {
-            radWordList = data;
-            console.log("Radical words loaded:", radWordList.length);
-        })
-        .catch(error => console.error('Error loading radical words:', error));
 
     function spin() {
         let tiles = spinnerbox.querySelector(".tiles");
@@ -75,19 +61,15 @@
             tile.style.fontSize = getFontSize(wheel[i]);
             temptiles.appendChild(tile);
             currentWord = wheel[i];
-            console.log(wheel[i]);
         }
         spinnerbox.replaceChild(temptiles, tiles);
         temptiles.getBoundingClientRect();
         temptiles.classList.add("spin");
     }
+
     function getWord() {
         if (wordList.length > 0) {
-            if (radswitch.checked == false){
-                return "meikä" + wordList[Math.floor(Math.random() * wordList.length)];
-            } else {
-                return "meikä" + radWordList[Math.floor(Math.random() * radWordList.length)];
-            }
+            return "meikä" + wordList[Math.floor(Math.random() * wordList.length)];
         }
     }
 
@@ -105,11 +87,11 @@
     }
 
     function copyWord() {
-        navigator.clipboard.writeText(output.innerHTML);
+        navigator.clipboard.writeText(currentWord);
     }
 
     function shareWord() {
-        navigator.share({text: "Hei maakrapu tsekkaas tää www.google.com"})
+        navigator.share({text: `${currentWord} löysi tällaisen sivuston, käys kattoo: github.com`})
         console.log("shared!")
     }
 
