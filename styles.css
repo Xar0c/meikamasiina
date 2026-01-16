@@ -1,3 +1,10 @@
+@font-face {
+    font-family: "Courier Prime";
+    font-style: normal;
+    font-weight: 400;
+    src: url(/fonts/CourierPrime-Regular.ttf) format("truetype");
+}
+
 html, body {
     height: 100%; 
     overflow: hidden;
@@ -43,7 +50,7 @@ html, body {
     justify-content: center;
     background: white;
     height: 11vw;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Courier Prime', 'Courier New', Courier, monospace;
 }
 
 .tiles {
