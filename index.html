@@ -57,24 +57,35 @@
         })
         .catch(error => console.error('Error loading words:', error));
 
-    function spin() {
-        let tiles = spinnerbox.querySelector(".tiles");
+    async function spin() {
+        let oldtiles = spinnerbox.querySelector(".tiles");
         let wheel = getWheel(15);
 
-        let temptiles = document.createElement("div");
-        temptiles.classList.add("tiles");
+        let newtiles = document.createElement("div");
+        newtiles.classList.add("tiles");
 
         for (let i = 0; i < wheel.length; i++) {
             let tile = document.createElement("div");
             tile.classList.add("tile");
             tile.textContent = wheel[i];
             tile.style.fontSize = getFontSize(wheel[i]);
-            temptiles.appendChild(tile);
+            newtiles.appendChild(tile);
             currentWord = wheel[i];
         }
-        spinnerbox.replaceChild(temptiles, tiles);
-        temptiles.getBoundingClientRect();
-        temptiles.classList.add("spin");
+
+        spinnerbox.replaceChild(newtiles, oldtiles);
+        
+        const animation = newtiles.animate(
+            [
+                { transform: "translateY(-153vw)"}
+            ],
+                { duration: 1500, easing: "ease", fill: "forwards" }
+        );
+
+        await animation.finished;
+
+        animation.commitStyles();
+        animation.cancel();
     }
 
     function getWord() {

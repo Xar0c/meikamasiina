@@ -64,15 +64,6 @@ html, body {
     font-family: 'Courier Prime', 'Courier New', Courier, monospace;
 }
 
-.tiles {
-    transform: translateY(0);
-    transition: transform 1.5s ease;
-}
-
-.tiles.spin {
-    transform: translateY(-153vw);
-}
-
 .btn {
     border: 2px solid var(--bg2);
     background-color: var(--bg1);
