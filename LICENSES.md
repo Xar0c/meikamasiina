@@ -2,8 +2,7 @@ LICENSES
 =================================================================
 
 
-1. Word list (CC BY 4.0)
------------------------------------------------------------------
+### 1. Word list (CC BY 4.0)
 
 This website includes a modified version of:
 
@@ -18,17 +17,17 @@ Not endorsed by original author.
 
 License: Creative Commons Attribution 4.0 International (CC BY 4.0) https://creativecommons.org/licenses/by/4.0/
 
-
-2. Fonts (SIL Open Font License, Version 1.1)
 -----------------------------------------------------------------
+
+### 2. Fonts (SIL Open Font License, Version 1.1)
 
 Copyright 2015 The Courier Prime Project Authors (https://github.com/quoteunquoteapps/CourierPrime).
 
 License available in full in /fonts/OFL.txt or https://openfontlicense.org
 
-
-3. Website source code and original content (MIT License)
 -----------------------------------------------------------------
+
+### 3. Website source code and original content (MIT License)
 
 Except where otherwise stated, the website's source code is licensed under MIT License.
 
@@ -55,3 +54,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+-----------------------------------------------------------------
