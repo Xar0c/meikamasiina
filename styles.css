@@ -2,7 +2,7 @@
     font-family: "Courier Prime";
     font-style: normal;
     font-weight: 400;
-    src: url(/meikamasiina/fonts/CourierPrime-Regular.ttf) format("truetype");
+    src: url(fonts/CourierPrime-Regular.ttf) format("truetype");
 }
 
 :root {
