@@ -6,6 +6,7 @@
         <title>meikämasiina</title>
         <link rel="stylesheet" href="styles.css">
         <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <link rel="manifest" href="/meikamasiina/manifest.webmanifest">
     </head>
     <body>
         <div id="container">
@@ -49,6 +50,10 @@
     copybtn.addEventListener("click", copyWord);
     sharebtn.addEventListener("click", shareWord);
 
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js", { scope: "/meikamasiina/" });
+    }
+
     fetch('wordlist_v1.json')
         .then(response => response.json())
         .then(data => {
@@ -56,7 +61,7 @@
             console.log("Words loaded:", wordList.length);
         })
         .catch(error => console.error('Error loading words:', error));
-
+    
     async function spin() {
         let oldtiles = spinnerbox.querySelector(".tiles");
         let wheel = getWheel(15);

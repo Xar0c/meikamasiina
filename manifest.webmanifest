@@ -1,0 +1,15 @@
+{
+  "name": "meikamasiina",
+  "short_name": "mm",
+  "scope": "/meikamasiina/",
+  "start_url": "/meikamasiina/",
+  "background_color": "#1D2021",
+  "theme_color": "#EBDBB2",
+  "display": "standalone", 
+  "icons": [
+      {
+        "src": "/meikamasiina/icon.png",
+        "sizes": "240x240"
+      }
+  ]
+}
