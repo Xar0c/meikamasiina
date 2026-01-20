@@ -1,4 +1,4 @@
-const VERSION = "v1";
+const VERSION = "v2";
 const WORDLIST_VERSION = "v1";
 const ROOT = "/meikamasiina";
 const CACHE_NAME = `meikamasiina-${VERSION}`;
@@ -12,6 +12,7 @@ const RESOURCES = [
     `${ROOT}/favicon.ico`,
     `${ROOT}/icon.png`,
     `${ROOT}/LICENSES.md`,
+    `${ROOT}/manifest.webmanifest`,
 ];
 
 self.addEventListener("install", (e) => {
