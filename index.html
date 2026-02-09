@@ -50,6 +50,12 @@
     copybtn.addEventListener("click", copyWord);
     sharebtn.addEventListener("click", shareWord);
 
+    document.addEventListener("keydown", function(event) {
+        if (event.key === "Enter" || event.key === " ") {
+            spin();
+        }
+    });
+
     if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("sw.js", { scope: "/meikamasiina/" });
     }
