@@ -1,4 +1,4 @@
-const VERSION = "v3";
+const VERSION = "v4";
 const WORDLIST_VERSION = "v1";
 const ROOT = "/meikamasiina";
 const CACHE_NAME = `meikamasiina-${VERSION}`;
