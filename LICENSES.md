@@ -30,9 +30,10 @@ License available in full in /fonts/OFL.txt or https://openfontlicense.org
 ### 3. Icons (Apache License 2.0)
 
 Icons from Material Symbols by Google - Licensed Under Apache License Version 2.0 
+
 (https://github.com/google/material-design-icons/blob/master/LICENSE)
 
-
+```
                                  Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
@@ -234,7 +235,7 @@ Icons from Material Symbols by Google - Licensed Under Apache License Version 2.
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-
+```
 -----------------------------------------------------------------
 
 ### 4. Website source code and original content (MIT License)
@@ -243,6 +244,7 @@ Except where otherwise stated, the website's source code is licensed under MIT L
 
 As noted above, the included word list is under a seperate CC BY 4.0 license.
 
+```
 MIT License
 
 Copyright (c) 2026 Xar0c
@@ -264,5 +266,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
+```
 -----------------------------------------------------------------
