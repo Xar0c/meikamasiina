@@ -60,7 +60,7 @@
         navigator.serviceWorker.register("sw.js", { scope: "/meikamasiina/" });
     }
 
-    fetch('wordlist_v1.json')
+    fetch('wordlist_v2.json')
         .then(response => response.json())
         .then(data => {
             wordList = data;
